@@ -1,0 +1,9 @@
+module.exports.userController = require('./user.controller');
+module.exports.authController = require('./auth.controller');
+module.exports.productController = require('./product.controller');
+module.exports.authorController = require('./author.controller');
+module.exports.orderController = require('./order.controller');
+module.exports.provideController = require('./provide.controller');
+module.exports.publishingController = require('./publishing.controller');
+module.exports.categoryController = require('./category.controller');
+module.exports.kindProductController = require('./kindProduct.controller');

@@ -1,0 +1,53 @@
+{
+  "name": "bookstore-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "env-cmd -f .env.development nodemon src/index.js",
+    "start:production": "env-cmd -f .env.production node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taminhvu/bookstore-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taminhvu/bookstore-backend/issues"
+  },
+  "homepage": "https://github.com/taminhvu/bookstore-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^10.1.0",
+    "google-auth-library": "^8.5.2",
+    "helmet": "^6.0.0",
+    "http-status": "^1.5.3",
+    "joi": "^17.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
+}

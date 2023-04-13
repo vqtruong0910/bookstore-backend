@@ -1,0 +1,10 @@
+module.exports.User = require('./user.model');
+module.exports.Product = require('./product.model');
+module.exports.Token = require('./token.model');
+module.exports.Provide = require('./provide.model');
+module.exports.Author = require('./author.model');
+module.exports.Order = require('./order.model');
+module.exports.Publishing = require('./publishing.model');
+module.exports.Category = require('./category.model');
+module.exports.KindProduct = require('./kindProduct.model');
+module.exports.Comment = require('./comment.model');

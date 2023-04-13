@@ -1,0 +1,1769 @@
+{
+	"title": "API Documentation",
+	"overview": "This is the API documentation for the bookstore API.",
+	"authentication": "To use this API, you need to login.",
+	"endpoints": {
+	"auths":[
+		{
+			"path": "/api/auths/login",
+			"method": "POST",
+			"description": "Retrieve a token to login.",
+			"form": [
+				{
+					"name": "Email",
+					"description": "Email is the account name to login to the website.",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name": "MatKhau",
+					"description": "MatKhau is the password to login to the website.",
+					"type": "string(password must contain at least 1 lowercase and uppercase letter and 1 number)",
+					"required": true
+				}
+			],
+			"response": {
+				"error": false,
+				"message": "",
+				"data": {
+					"Email": "taminhvu711@gmail.com",
+					"HoTen": "ta minh vu",
+					"Anh": null,
+					"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6NDEsIlF1eWVuIjoxLCJpYXQiOjE2NzYxMDYwMDcsImV4cCI6MTY3NjEwNjYwN30.t7V68x-gXNS9HgzFOAurMZa64t8bFcRMO0iF4NdygRo"
+				}
+			}
+		},
+		{
+			"path": "/api/auths/register",
+			"method": "POST",
+			"description": "create an account.",
+			"form": [
+				{
+					"name": "HoTen",
+					"description": "HoTen is the user's username.",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name": "Email",
+					"description": "Email is the account name to login to the website.",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name": "MatKhau",
+					"description": "MatKhau is the password to login to the website.",
+					"type": "string(password must contain at least 1 lowercase and uppercase letter and 1 number)",
+					"required": true
+				},
+				{
+					"name": "GioiTinh",
+					"description": "GioiTinh is the user'gender.",
+					"type": "number 0 is male, 1 is female",
+					"required": true
+				},
+				{
+					"name": "NgaySinh",
+					"description": "NgaySinh is the date of birth of the user.",
+					"type": "iso date",
+					"required": true
+				}
+			],
+			"response": {
+				"error": false,
+				"message": "Create",
+				"data": {
+					"Email": "taminhvu7121@gmail.com"
+				}
+			}
+		},
+		{
+			"path": "/api/auths/send-verification-email",
+			"method": "POST",
+			"description": "send account verification email",
+			"form": [
+				{
+					"name": "Email",
+					"description": "Email is the account name to login to the website.",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "success"
+			}
+		},
+		{
+			"path": "api/auths/verify-email",
+			"method": "POST",
+			"description": "Verify account",
+			"form": [
+				{
+					"name": "token",
+					"description": "token is the string received from the email",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "success"
+			}
+		},
+		{
+			"path": "api/auths/refreshToken",
+			"method": "get",
+			"description": "refresh token"
+		},
+		{
+			"path": "api/auths/logout",
+			"method": "delete",
+			"description": "logout"
+		},
+		{
+			"path": "api/auths/send-email-reset-password",
+			"method": "post",
+			"description": "send email"
+		},
+		{
+			"path": "api/auths/reset-password",
+			"method": "post",
+			"description": "reset password"
+		},
+		{
+			"path": "api/auths/change_password",
+			"method": "put",
+			"description": "change password"
+		}										
+    ],
+	"author":[
+		{
+			"path": "api/author/pages?p= &s= ",
+			"method": "get",
+			"description": "get author with page and size",
+			"params": [
+				{
+					"name": "p",
+					"description": "page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name": "s",
+					"description": "page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+					"error": false,
+					"message": "",
+					"data": {
+						"DanhSach": [
+							{
+								"IDTacGia": 1,
+								"TenTacGia": "Nguyễn Nhật Ánh",
+								"DiaChi": "Quảng Nam"
+							}
+						],
+						"TongTacGia": 1,
+						"SoLuongTrang": 1
+					}
+			}
+		},
+		{
+			"path": "api/author",
+			"method": "POST",
+			"description": "add author",
+			"form": [
+				{
+					"name": "TenTacGia",
+					"description": "author's name",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name": "DiaChi",
+					"description": "Author's address",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/author",
+			"method": "get",
+			"description": "get all author",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDTacGia": 1,
+						"TenTacGia": "Nguyễn Nhật Ánh",
+						"DiaChi": "Quảng Nam"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/author/:ID",
+			"method": "get",
+			"description": "get author by ID",
+			"query": [
+				{
+					"name": "ID",
+					"description": "author's ID",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDTacGia": 1,
+						"TenTacGia": "Nguyễn Nhật Ánh",
+						"DiaChi": "Quảng Nam"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/author/:ID",
+			"method": "put",
+			"description": "update author by ID",
+			"query": [
+				{
+					"name": "ID",
+					"description": "author's ID",
+					"type": "number",
+					"required": true
+				}
+			],
+			"form": [
+				{
+					"name": "TenTacGia",
+					"description": "author's name",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name": "DiaChi",
+					"description": "Author's address",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/author/:ID",
+			"method": "delete",
+			"description": "delete author by ID",
+			"query": [
+				{
+					"name": "ID",
+					"description": "author's ID",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		}																	
+	],
+	"category":[
+		{
+			"path": "api/category",
+			"method": "get",
+			"description": "get all category",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDDanhMuc": 1,
+						"TenDanhMuc": "Sách Trong Nước"
+					},
+					{
+						"IDDanhMuc": 2,
+						"TenDanhMuc": "Sách Nước Ngoài"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/category",
+			"method": "post",
+			"description": "get all category",
+			"form":[
+				{
+					"name":"TenDanhMuc",
+					"description":"the name of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/category/pages?p= &s= ",
+			"method": "get",
+			"description": "get categories with page and size",
+			"params": [
+				{
+					"name": "p",
+					"description": "page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name": "s",
+					"description": "page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDDanhMuc": 1,
+							"TenDanhMuc": "Sách Trong Nước"
+						}
+					],
+					"TongDanhMuc": 3,
+					"SoLuongTrang": 3
+				}
+			}
+		},
+		{
+			"path": "api/category/:ID",
+			"method": "get",
+			"description": "get category by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDDanhMuc": 1,
+						"TenDanhMuc": "Sách Trong Nước"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/category/:ID",
+			"method": "put",
+			"description": "update category by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"form":[
+				{
+					"name":"TenDanhMuc",
+					"description":"the name of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/category/:ID",
+			"method": "delete",
+			"description": "delete category by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		}
+	],
+	"kindProduct":[
+		{
+			"path": "api/kind_product",
+			"method": "get",
+			"description": "get all kind_product",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDTheLoai": 2,
+						"TenTheLoai": "Tiểu Thuyết",
+						"IDDanhMuc": 2
+					}
+				]
+			}
+		},
+		{
+			"path": "api/kind_product",
+			"method": "post",
+			"description": "add kind of product",
+			"form":[
+				{
+					"name":"TenDanhMuc",
+					"description":"the name of the kind of product",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"IDDanhMuc",
+					"description":"the ID of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/kind_product/:ID",
+			"method": "get",
+			"description": "get kind of product by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the kind of product",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDTheLoai": 2,
+						"TenTheLoai": "Tiểu Thuyết",
+						"IDDanhMuc": 2
+					}
+				]
+			}
+		},
+		{
+			"path": "api/kind_product/:ID",
+			"method": "put",
+			"description": "update category by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the kind of product",
+					"type": "number",
+					"required": true
+				}
+			],
+			"form":[
+				{
+					"name":"TenDanhMuc",
+					"description":"the name of the kind of product",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"IDDanhMuc",
+					"description":"the id of the kind of product",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/category/:ID",
+			"method": "delete",
+			"description": "delete kind of product by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the kind of product",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/kind_product/idcategory/:ID",
+			"method": "get",
+			"description": "get kind of product by category's ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the category",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDTheLoai": 2,
+						"TenTheLoai": "Tiểu Thuyết"
+					},
+					{
+						"IDTheLoai": 3,
+						"TenTheLoai": "Trinh Thám"
+					}
+				]
+			}
+		}
+	],
+	"oder":[
+		{
+			"path": "api/order",
+			"method": "get",
+			"description": "get all order",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDDonHang": 4,
+						"IDNguoiDung": 14,
+						"NgayDat": null,
+						"NgayGiao": "2022-11-24T17:00:00.000Z",
+						"DiaChi": "181,Duong28,Phuong6,gv",
+						"TrangThai": -2,
+						"PhiShip": 0,
+						"SoLuong": 6,
+						"Tong": 300000
+					},
+					{
+						"IDDonHang": 5,
+						"IDNguoiDung": null,
+						"NgayDat": "2022-11-10T17:00:00.000Z",
+						"NgayGiao": null,
+						"DiaChi": "181 duong 28, phuong 6, go vap",
+						"TrangThai": 3,
+						"PhiShip": 0,
+						"SoLuong": 10,
+						"Tong": 380000
+					}
+				]
+			}
+		}
+
+	],
+	"product":[
+		{
+			"path": "api/product",
+			"method": "get",
+			"description": "get all product",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.com/public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product",
+			"method": "post",
+			"description": "add product",
+			"form":[
+				{
+					"name":"HinhAnh",
+					"description":"the image of product",
+					"type": "image/png,image/jpg,image/jpeg",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/product/:ID",
+			"method": "get",
+			"description": "get product by ID",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.com/public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/:ID",
+			"method": "put",
+			"description": "update product by ID",
+			"form":[
+				{
+					"name":"HinhAnh",
+					"description":"the image of product",
+					"type": "image/png,image/jpg,image/jpeg",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/product/:ID",
+			"method": "delete",
+			"description": "delete product by ID",
+			"form":[
+				{
+					"name":"HinhAnh",
+					"description":"the image of product",
+					"type": "image/png,image/jpg,image/jpeg",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/product/id_nhaxuatban/:ID",
+			"method": "get",
+			"description": "get product by ID publishing",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 2,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 5,
+						"HinhAnh": "public/product/HinhAnh-1669369927906.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-01-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 3,
+						"TenSanPham": "chuyen xay ra trong dem",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 95,
+						"HinhAnh": "public/product/HinhAnh-1669369911640.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 4,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 101,
+						"HinhAnh": "public/product/HinhAnh-1669368789627.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 5,
+						"TenSanPham": "Trạng tí",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 120,
+						"HinhAnh": "http://localhost:8000/public/product/HinhAnh-1669169777244.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 3,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/id_theloai/:ID",
+			"method": "get",
+			"description": "get product by ID kind of product",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 2,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 5,
+						"HinhAnh": "public/product/HinhAnh-1669369927906.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-01-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 3,
+						"TenSanPham": "chuyen xay ra trong dem",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 95,
+						"HinhAnh": "public/product/HinhAnh-1669369911640.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-16T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 4,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 101,
+						"HinhAnh": "public/product/HinhAnh-1669368789627.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0
+					},
+					{
+						"IDSanPham": 5,
+						"TenSanPham": "Trạng tí",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 120,
+						"HinhAnh": "http://localhost:8000/public/product/HinhAnh-1669169777244.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 3,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/search?name=",
+			"method": "get",
+			"description": "get all product",
+			"params":[
+				{
+					"name":"name",
+					"description":"The name of the product you want to find",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.com/public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/search?name=",
+			"method": "get",
+			"description": "get all product",
+			"params":[
+				{
+					"name":"name",
+					"description":"The name of the product you want to find",
+					"type": "string",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.com/public/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/id_theloai?k=?&p=?&s=?",
+			"method": "get",
+			"description": "get all product",
+			"params":[
+				{
+					"name":"k",
+					"description":"id of the kind of category",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"page",
+					"description":"page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"s",
+					"description":"page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDSanPham": 1,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 0,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+							"SoTrang": 500,
+							"GiamGia": 5,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-08-16T17:00:00.000Z",
+							"TrangThai": 0
+						},
+						{
+							"IDSanPham": 2,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 5,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+							"SoTrang": 500,
+							"GiamGia": 10,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-01-16T17:00:00.000Z",
+							"TrangThai": 0
+						}
+					],
+					"TongSanPham": 4,
+					"SoLuongTrang": 2
+				}
+			}
+		},
+		{
+			"path": "api/product/id_danhmuc?k=?&p=?&s=?",
+			"method": "get",
+			"description": "get all product",
+			"params":[
+				{
+					"name":"c",
+					"description":"id of the category",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"page",
+					"description":"page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"s",
+					"description":"page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDSanPham": 1,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 0,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+							"SoTrang": 500,
+							"GiamGia": 5,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-08-16T17:00:00.000Z",
+							"TrangThai": 0
+						},
+						{
+							"IDSanPham": 2,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 5,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+							"SoTrang": 500,
+							"GiamGia": 10,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-01-16T17:00:00.000Z",
+							"TrangThai": 0
+						}
+					],
+					"TongSanPham": 5,
+					"SoLuongTrang": 3
+				}
+			}
+		},
+		{
+			"path": "api/product/filter?k=?&c=?>&d=?&p=?&s=?",
+			"method": "get",
+			"description": "filter products",
+			"params":[
+				{
+					"name":"k",
+					"description":"id of the kind of product",
+					"type": "number",
+					"required": false
+				},
+				{
+					"name":"c",
+					"description":"id of the category",
+					"type": "number",
+					"required": false
+				},
+				{
+					"name":"d",
+					"description":"date of the date add this book",
+					"type": "iso date",
+					"required": false
+				},
+				{
+					"name":"p",
+					"description":"page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"s",
+					"description":"page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDSanPham": 1,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 0,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+							"SoTrang": 500,
+							"GiamGia": 5,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-08-16T17:00:00.000Z",
+							"TrangThai": 0
+						},
+						{
+							"IDSanPham": 2,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 5,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+							"SoTrang": 500,
+							"GiamGia": 10,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-01-16T17:00:00.000Z",
+							"TrangThai": 0
+						}
+					],
+					"TongSanPham": 5,
+					"SoLuongTrang": 3
+				}
+			}
+		},
+		{
+			"path": "api/product/pages?p=?&s=?",
+			"method": "get",
+			"description": "get product by page",
+			"params":[
+				{
+					"name":"page",
+					"description":"page index",
+					"type": "number",
+					"required": true
+				},
+				{
+					"name":"s",
+					"description":"page size",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDSanPham": 1,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 0,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+							"SoTrang": 500,
+							"GiamGia": 5,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-08-16T17:00:00.000Z",
+							"TrangThai": 0
+						},
+						{
+							"IDSanPham": 2,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 5,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+							"SoTrang": 500,
+							"GiamGia": 10,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-01-16T17:00:00.000Z",
+							"TrangThai": 0
+						}
+					],
+					"TongSanPham": 5,
+					"SoLuongTrang": 3
+				}
+			}
+		},
+		{
+			"path": "api/product/new",
+			"method": "get",
+			"description": "get new proudct",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": {
+					"DanhSach": [
+						{
+							"IDSanPham": 1,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 0,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+							"SoTrang": 500,
+							"GiamGia": 5,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-08-16T17:00:00.000Z",
+							"TrangThai": 0
+						},
+						{
+							"IDSanPham": 2,
+							"TenSanPham": "Trang Quynh",
+							"IDNhaXuatBan": 1,
+							"IDTacGia": 1,
+							"DonViTinh": "quyen",
+							"TomTatND": "hay",
+							"GiaBan": 45000,
+							"SoLuongConLai": 5,
+							"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+							"SoTrang": 500,
+							"GiamGia": 10,
+							"IDTheLoai": 1,
+							"NgayThem": "2022-01-16T17:00:00.000Z",
+							"TrangThai": 0
+						}
+					],
+					"TongSanPham": 5,
+					"SoLuongTrang": 3
+				}
+			}
+		},
+		{
+			"path": "api/product/bestseller",
+			"method": "get",
+			"description": "take the 5 most purchased products",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 83
+					},
+					{
+						"IDSanPham": 3,
+						"TenSanPham": "chuyen xay ra trong dem",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 95,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369911640.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 57
+					},
+					{
+						"IDSanPham": 2,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 5,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-01-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 23
+					},
+					{
+						"IDSanPham": 4,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 101,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669368789627.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 19
+					},
+					{
+						"IDSanPham": 5,
+						"TenSanPham": "Trạng tí",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 120,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.comhttp://localhost:8000/public/product/HinhAnh-1669169777244.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 3,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": null
+					}
+				]
+			}
+		},
+		{
+			"path": "api/product/toptenbestsellerperday",
+			"method": "get",
+			"description": "take the 10 most purchased products per day",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDSanPham": 1,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 0,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369847834.png",
+						"SoTrang": 500,
+						"GiamGia": 5,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-08-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 83
+					},
+					{
+						"IDSanPham": 3,
+						"TenSanPham": "chuyen xay ra trong dem",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 95,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369911640.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 57
+					},
+					{
+						"IDSanPham": 2,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 5,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669369927906.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-01-16T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 23
+					},
+					{
+						"IDSanPham": 4,
+						"TenSanPham": "Trang Quynh",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 101,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.compublic/product/HinhAnh-1669368789627.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 1,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": 19
+					},
+					{
+						"IDSanPham": 5,
+						"TenSanPham": "Trạng tí",
+						"IDNhaXuatBan": 1,
+						"IDTacGia": 1,
+						"DonViTinh": "quyen",
+						"TomTatND": "hay",
+						"GiaBan": 45000,
+						"SoLuongConLai": 120,
+						"HinhAnh": "https://bookstore-backend-xxnl.onrender.comhttp://localhost:8000/public/product/HinhAnh-1669169777244.png",
+						"SoTrang": 500,
+						"GiamGia": 10,
+						"IDTheLoai": 3,
+						"NgayThem": "2022-11-22T17:00:00.000Z",
+						"TrangThai": 0,
+						"soluong": null
+					}
+				]
+			}
+		}
+	],
+	"provide":[
+		{
+			"path": "api/provide",
+			"method": "get",
+			"description": "get all provide",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDNhaCungCap": 1,
+						"TenNhaCungCap": "Công ty phân phối sách HCM",
+						"DiaChi": "181/Trần Bình Trọng/Phường 7/Quận 5/HCM"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/provide",
+			"method": "post",
+			"description": "add provide",
+			"form":[
+				{
+					"name":"TenNhaCungCap",
+					"description":"the name of the provide",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"DiaChi",
+					"description":"address",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/provide/:ID",
+			"method": "get",
+			"description": "get get provide by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the provide",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDNhaCungCap": 1,
+						"TenNhaCungCap": "Công ty phân phối sách HCM",
+						"DiaChi": "181/Trần Bình Trọng/Phường 7/Quận 5/HCM"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/provide/:ID",
+			"method": "put",
+			"description": "update by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the provide",
+					"type": "number",
+					"required": true
+				}
+			],
+			"form":[
+				{
+					"name":"TenNhaCungCap",
+					"description":"the name of the provide",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"DiaChi",
+					"description":"address",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/provide/:ID",
+			"method": "delete",
+			"description": "delete by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the provide",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		}
+	],
+	"publishing":[
+		{
+			"path": "api/publishing",
+			"method": "get",
+			"description": "get all publishing",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDNhaXuatBan": 1,
+						"TenNhaXuatBan": "Nhà Xuất Bản Trẻ",
+						"DiaChi": "176 Thái Hà/ Đống Đa/ Hà Nội"
+					},
+					{
+						"IDNhaXuatBan": 2,
+						"TenNhaXuatBan": "Nhà xuất bản sài gòn",
+						"DiaChi": "HCM"
+					}
+				]
+			}
+		},
+		{
+			"path": "api/publishing",
+			"method": "post",
+			"description": "add publishing",
+			"form":[
+				{
+					"name":"TenNhaXuatBan",
+					"description":"the name of the publishing",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"DiaChi",
+					"description":"address",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/publishing/:ID",
+			"method": "get",
+			"description": "get get publishing by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the publishing",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+					{
+						"IDNhaXuatBan": 1,
+						"TenNhaXuatBan": "Nhà Xuất Bản Trẻ",
+						"DiaChi": "176 Thái Hà/ Đống Đa/ Hà Nội"
+					}
+				]
+			}
+		},
+		{"path": "api/publishing/:ID",
+		"method": "put",
+		"description": "update publishing by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the publishing",
+					"type": "number",
+					"required": true
+				}
+			],
+			"form":[
+				{
+					"name":"TenNhaXuatBan",
+					"description":"the name of the publishing",
+					"type": "string",
+					"required": true
+				},
+				{
+					"name":"DiaChi",
+					"description":"address",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		},
+		{
+			"path": "api/publishing/:ID",
+			"method": "delete",
+			"description": "delete by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the publishing",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+			}
+		}
+	],
+	"user":[
+		{
+			"path": "api/users/statisticperday",
+			"method": "get",
+			"description": "get statistic per day",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/statistic",
+			"method": "get",
+			"description": "get statistic this week and last week",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/:ID",
+			"method": "get",
+			"description": "get user by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the user",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/:ID",
+			"method": "put",
+			"description": "update user by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the user",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/:ID",
+			"method": "delete",
+			"description": "delete user by ID",
+			"query":[
+				{
+					"name":"ID",
+					"description":"the ID of the user",
+					"type": "number",
+					"required": true
+				}
+			],
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/pages/:index",
+			"method": "get",
+			"description": "get five users per site",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		},
+		{
+			"path": "api/users/avatar",
+			"method": "post",
+			"description": "change avatar",
+			"response":{
+				"error": false,
+				"message": "",
+				"data": [
+				]
+			}
+		}
+	]
+}
+}
